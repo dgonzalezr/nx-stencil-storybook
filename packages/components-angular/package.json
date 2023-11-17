@@ -1,0 +1,16 @@
+{
+  "name": "@legion/components-angular",
+  "version": "3.17.0",
+  "license": "MIT",
+  "description": "Angular specific wrapper",
+  "module": "fesm2022/legion-components-angular.mjs",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=14.0.0",
+    "@angular/core": ">=14.0.0"
+  }
+}

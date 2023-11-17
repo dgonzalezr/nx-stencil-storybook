@@ -1,0 +1,118 @@
+{
+  "name": "components",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/components/src",
+  "projectType": "library",
+  "tags": ["components", "core", "publishable"],
+  "generators": {
+    "@nxext/stencil:component": {
+      "style": "scss"
+    }
+  },
+  "namedInputs": {
+    "production": [
+      "default",
+      "!{projectRoot}/**/*.mdx",
+      "!{projectRoot}/**/*.e2e.ts",
+      "!{projectRoot}/**/*.spec.ts",
+      "!{projectRoot}/**/*.stories.tsx",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/jest.config.ts",
+      "!{projectRoot}/.eslintrc.json"
+    ]
+  },
+  "targets": {
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx run components:stencil-start --noOpen", "nx run components:storybook-start"],
+        "parallel": true
+      }
+    },
+    "stencil-start": {
+      "executor": "@nxext/stencil:serve",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "projectType": "library",
+        "tsConfig": "packages/components/tsconfig.lib.json",
+        "configPath": "packages/components/stencil.config.ts",
+        "outputPath": "dist/components"
+      }
+    },
+    "storybook-start": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "loglevel": "silly",
+        "configDir": "packages/components/.storybook",
+        "host": "127.0.0.1",
+        "port": 9001,
+        "open": true
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build": {
+      "executor": "@nxext/stencil:build",
+      "outputs": ["{options.outputPath}", "{projectRoot}/custom-elements.json"],
+      "options": {
+        "ci": true,
+        "projectType": "library",
+        "tsConfig": "packages/components/tsconfig.lib.json",
+        "configPath": "packages/components/stencil.config.ts",
+        "outputPath": "dist/components"
+      },
+      "configurations": {
+        "production": {
+          "dev": false,
+          "prod": true
+        }
+      }
+    },
+    "storybook-build": {
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}", "{options.config.configDir}"],
+      "options": {
+        "outputDir": "dist/storybook/components",
+        "configDir": "packages/components/.storybook",
+        "tsConfig": "packages/beeq/tsconfig.storybook.json",
+        "ci": true
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test": {
+      "executor": "@nxext/stencil:test",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "projectType": "library",
+        "tsConfig": "packages/components/tsconfig.lib.json",
+        "configPath": "packages/components/stencil.config.ts",
+        "outputPath": "dist/components"
+      }
+    },
+    "e2e": {
+      "executor": "@nxext/stencil:e2e",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "projectType": "library",
+        "tsConfig": "packages/components/tsconfig.lib.json",
+        "configPath": "packages/components/stencil.config.ts",
+        "outputPath": "dist/components",
+        "noBuild": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/components/**/*.{ts,tsx}"]
+      }
+    }
+  }
+}

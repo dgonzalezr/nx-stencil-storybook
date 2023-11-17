@@ -1,0 +1,27 @@
+{
+  "name": "components-angular",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/components-angular/src",
+  "tags": ["wrapper", "angular", "publishable"],
+  "projectType": "library",
+  "prefix": "components",
+  "implicitDependencies": ["components"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/components-angular"],
+      "options": {
+        "project": "packages/components-angular/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/components-angular/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/components-angular/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    }
+  }
+}

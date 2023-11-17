@@ -1,0 +1,22 @@
+{
+  "name": "components-react",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/components-react/src",
+  "projectType": "library",
+  "tags": ["wrapper", "react", "publishable"],
+  "implicitDependencies": ["components"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "clean": true,
+        "main": "packages/components-react/src/index.ts",
+        "assets": ["packages/components-react/README.md"],
+        "outputPath": "dist/components-react",
+        "project": "packages/components-react/package.json",
+        "tsConfig": "packages/components-react/tsconfig.lib.json"
+      }
+    }
+  }
+}

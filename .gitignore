@@ -1,0 +1,54 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# source files to ignore
+.angular
+package.e2e.json
+packages/components/.stencil
+packages/components/custom-elements.json
+packages/components/src/components/icon/svg/**
+packages/components-angular/**/directives
+packages/components-react/src/react-component-lib
+packages/components-react/src/components.ts
+!.gitkeep
+
+# dependencies
+node_modules
+
+# IDEs and editors
+/.idea
+.history
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/stencil-component-starter.code-snippets
+
+# misc
+.cache
+.nx/cache
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
